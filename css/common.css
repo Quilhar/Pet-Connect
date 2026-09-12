@@ -21,6 +21,7 @@ html { scroll-behavior: smooth; }
 
 body {
     min-width: 320px;
+    min-height: 100vh;
     margin: 0;
     background: var(--paper);
     color: var(--ink);
@@ -69,7 +70,7 @@ h1, h2, h3 { font-family: 'Fraunces', serif; line-height: 1.05; }
 .hamburger-button { display: none; border: 0; background: transparent; color: var(--paper); font-size: 1.45rem; }
 .hamburger-con { display: none; }
 
-footer { margin-top: 4rem; padding: 2rem clamp(1.25rem, 5vw, 5rem); background: var(--ink); color: var(--paper); }
+footer { margin-top: 2rem; padding: 2rem clamp(1.25rem, 5vw, 5rem); background: var(--ink); color: var(--paper); }
 .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; color: #dce9df; font-size: 0.85rem; text-align: center; }
 
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }

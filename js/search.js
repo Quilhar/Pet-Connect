@@ -89,10 +89,26 @@ async function searchAnimals(values) {
         distance: values.distance,
         zip: values.zip
     });
-    const response = await fetch(`${API_ENDPOINT}?${params}`);
+    if (window.location.protocol === 'file:') {
+        throw new Error('The API proxy is unavailable from a file. Run netlify dev or deploy this site to Netlify.');
+    }
+
+    let response;
+    try {
+        response = await fetch(`${API_ENDPOINT}?${params}`);
+    } catch {
+        throw new Error('The API proxy could not be reached. Run netlify dev or deploy this site to Netlify.');
+    }
 
     if (!response.ok) {
-        throw new Error('The RescueGroups search could not be completed.');
+        let details = '';
+        try {
+            const errorPayload = await response.json();
+            details = errorPayload.error || '';
+        } catch {
+            details = '';
+        }
+        throw new Error(details || `RescueGroups search failed with status ${response.status}.`);
     }
 
     return response.json();
