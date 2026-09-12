@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoptable Pets | PetConnect</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-left">
+            <i class="fa-solid fa-magnifying-glass-location" aria-hidden="true"></i>
+            <a href="../index.html"><span class="web-name">PetConnect</span></a>
+        </div>
+        <button class="hamburger-button" type="button" aria-label="Open menu" aria-expanded="false">
+            <i class="bars fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="links">
+            <li class="items"><a href="./about.html">About</a></li>
+            <li class="items"><a href="./portfolio.html">Portfolio</a></li>
+        </ul>
+    </header>
+
+    <div class="hamburger-con">
+        <div class="exit"><button type="button" aria-label="Close menu"><i class="fa-solid fa-x" aria-hidden="true"></i></button></div>
+        <div class="hamburger-option"><a href="./about.html">About</a></div>
+        <div class="hamburger-option"><a href="./portfolio.html">Portfolio</a></div>
+    </div>
+
+    <main>
+        <h1>Adoptable Pets</h1>
+        <div class="info">
+            <div class="species">
+                <label for="species">Species</label>
+                <select name="species" id="species" required>
+                    <option value="" selected>Please Select</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Rabbit">Rabbit</option>
+                </select>
+            </div>
+            <div class="sex">
+                <label for="sex">Sex</label>
+                <select name="sex" id="sex" required>
+                    <option value="" selected>Please Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="no-pref">No Preference</option>
+                </select>
+            </div>
+            <div class="distance">
+                <label for="distance">Distance</label>
+                <select name="distance" id="distance" required>
+                    <option value="" selected>Please Select</option>
+                    <option value="25">25 Miles</option>
+                    <option value="100">100 Miles</option>
+                    <option value="no-limit">No limit</option>
+                </select>
+            </div>
+            <div class="zip">
+                <label for="zip">ZIP / Postal Code</label>
+                <input type="text" id="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" aria-describedby="zip-help" required>
+                <small id="zip-help">Enter a 5-digit ZIP code.</small>
+            </div>
+        </div>
+
+        <button class="search-button" type="button">Search</button>
+        <p class="found" aria-live="polite"></p>
+        <div class="result-con" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <div class="copyright"><p>©2024 PetConnect</p></div>
+            <div class="number"><p>Phone Number - (207)-653-6200</p></div>
+            <div class="email"><p>Email - davidtit240@gmail.com</p></div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

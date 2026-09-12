@@ -1,0 +1,82 @@
+main { overflow: hidden; }
+
+.hero {
+    position: relative;
+    display: grid;
+    min-height: min(44rem, 78vh);
+    place-items: center;
+    padding: clamp(5rem, 12vw, 9rem) 1.25rem;
+    isolation: isolate;
+    background: url('../img/krista-mangulsone-9gz3wfHr65U-unsplash.jpg') center / cover;
+}
+
+.hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgb(20 43 42 / 78%), rgb(20 43 42 / 18%)), linear-gradient(0deg, rgb(20 43 42 / 20%), transparent 55%);
+    content: '';
+}
+
+.hero-txt {
+    width: min(100%, 58rem);
+    color: var(--paper);
+    text-align: center;
+}
+
+.hero-txt p { margin: 0; }
+.hero-title { max-width: 52rem; margin: 0 auto; font-family: 'Fraunces', serif; font-size: clamp(3rem, 8vw, 6.75rem); font-weight: 700; line-height: 0.98; }
+.hero-subtitle { margin-top: 1.25rem; color: #f7c3aa; font-size: clamp(1.35rem, 3vw, 2.25rem); font-weight: 600; }
+.hero-subtext { max-width: 34rem; margin: 1rem auto 0; color: #f4eee4; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6; }
+
+.pet-button-con {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 8rem));
+    justify-content: center;
+    gap: 1rem;
+    margin: -2.5rem auto 0;
+    position: relative;
+    z-index: 2;
+    width: min(100% - 2rem, 27rem);
+}
+
+.pet-button-con form { margin: 0; }
+.pet-button-con button {
+    display: grid;
+    width: 100%;
+    min-height: 8rem;
+    place-items: center;
+    align-content: center;
+    gap: 0.55rem;
+    border: 1px solid rgb(255 255 255 / 20%);
+    border-radius: 0.75rem;
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: var(--shadow);
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.pet-button-con button:hover, .pet-button-con button:focus-visible { transform: translateY(-0.35rem); background: var(--coral-dark); }
+.pet-button-con button p { margin: 0; font-size: 1rem; font-weight: 700; }
+.pet-button-con button i { color: var(--coral); font-size: 2rem; }
+
+.cta {
+    width: min(100% - 2rem, 58rem);
+    margin: clamp(4rem, 9vw, 7rem) auto 0;
+    padding: clamp(2rem, 5vw, 4rem);
+    border-top: 0.35rem solid var(--coral);
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.75;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .hero { min-height: 34rem; }
+    .pet-button-con { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+    .pet-button-con button { min-height: 6.25rem; }
+    .pet-button-con button i { font-size: 1.5rem; }
+}

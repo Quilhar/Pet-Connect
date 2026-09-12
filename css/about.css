@@ -1,0 +1,17 @@
+main { padding-bottom: 1rem; }
+
+.hero {
+    display: grid;
+    min-height: min(31rem, 60vh);
+    place-items: center;
+    padding: 4rem 1.25rem;
+    background: linear-gradient(90deg, rgb(20 43 42 / 78%), rgb(20 43 42 / 18%)), url('../img/andrew-s-ouo1hbizWwo-unsplash.jpg') center / cover;
+    color: var(--paper);
+}
+.hero p { margin: 0; font-family: 'Fraunces', serif; font-size: clamp(3rem, 8vw, 6rem); text-align: center; }
+
+.txt { width: min(100% - 2rem, 56rem); margin: clamp(3rem, 8vw, 6rem) auto 0; }
+.about-title { color: var(--ink); font-family: 'Fraunces', serif; font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; }
+.about-txt { margin-top: 1.5rem; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; }
+.about-txt p { margin: 0; }
+.signature { margin: 1.5rem 0 5rem; color: var(--coral-dark); font-style: italic; text-align: right; }

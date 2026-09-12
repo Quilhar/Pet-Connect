@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
+:root {
+    --ink: #142b2a;
+    --muted: #5f716e;
+    --paper: #f7f4ed;
+    --surface: #fffdf8;
+    --coral: #e87b61;
+    --coral-dark: #bf594c;
+    --sage: #dce9df;
+    --line: #d8dfd8;
+    --focus: #e7ad3f;
+    --shadow: 0 1.25rem 3rem rgb(20 43 42 / 10%);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    min-width: 320px;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+}
+
+button, input, select { font: inherit; }
+button, a, select, input { -webkit-tap-highlight-color: transparent; }
+button, a { cursor: pointer; }
+a { color: inherit; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+h1, h2, h3 { font-family: 'Fraunces', serif; line-height: 1.05; }
+
+.site-header {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.15rem clamp(1.25rem, 5vw, 5rem);
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.header-left { display: flex; align-items: center; gap: 0.8rem; }
+.header-left > i { color: var(--coral); font-size: 1.1rem; }
+.header-left a { color: var(--paper); text-decoration: none; }
+.web-name { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.02em; }
+
+.links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); }
+.links a, .hamburger-option a { text-decoration: none; }
+.links a:hover, .links a:focus-visible, .hamburger-option a:hover, .hamburger-option a:focus-visible { color: var(--coral); }
+.links form, .hamburger-option form { margin: 0; }
+.links button, .hamburger-option button {
+    padding: 0.65rem 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--coral);
+    color: var(--ink);
+    font-weight: 700;
+}
+.links button:hover, .links button:focus-visible, .hamburger-option button:hover, .hamburger-option button:focus-visible { background: #f2a186; }
+
+.hamburger-button { display: none; border: 0; background: transparent; color: var(--paper); font-size: 1.45rem; }
+.hamburger-con { display: none; }
+
+footer { margin-top: 4rem; padding: 2rem clamp(1.25rem, 5vw, 5rem); background: var(--ink); color: var(--paper); }
+.contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; color: #dce9df; font-size: 0.85rem; text-align: center; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+@media (max-width: 700px) {
+    .site-header { padding: 1rem 1.25rem; }
+    .links { display: none; }
+    .hamburger-button { display: block; }
+    .hamburger-con {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 10;
+        display: none;
+        width: min(19rem, calc(100vw - 1.5rem));
+        padding: 1rem;
+        border-radius: 0.8rem;
+        background: var(--ink);
+        color: var(--paper);
+        box-shadow: var(--shadow);
+    }
+    .hamburger-con.is-open { display: flex; flex-direction: column; gap: 1rem; }
+    .exit { display: flex; justify-content: flex-end; }
+    .exit button { border: 0; background: transparent; color: var(--paper); font-size: 1.2rem; }
+    .hamburger-option { font-size: 1.05rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

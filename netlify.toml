@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/api/rescue-groups"
+  to = "/.netlify/functions/rescue-groups"
+  status = 200

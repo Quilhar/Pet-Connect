@@ -1,0 +1,35 @@
+main {
+    width: min(100% - 2rem, 70rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 5rem) 0 1rem;
+}
+
+main h1 { width: 100%; margin: 0 0 2rem; font-size: clamp(2.5rem, 6vw, 4.5rem); }
+.general-info {
+    display: grid;
+    grid-template-columns: minmax(15rem, 24rem) 1fr;
+    align-items: center;
+    gap: 0.55rem 2rem;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+.general-info img { grid-row: span 3; width: 100%; max-height: 28rem; border-radius: 0.7rem; object-fit: cover; }
+.general-info p { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.general-info .name1-2 { color: var(--ink); font-family: 'Fraunces', serif; font-size: 2.25rem; font-weight: 700; }
+
+.pet-background, .pet-contact { width: 100%; margin-top: 2rem; }
+.pet-background { padding: 1.5rem 0; color: var(--muted); font-size: 1.05rem; line-height: 1.8; }
+.pet-background p { margin: 0; }
+.pet-contact h2 { margin: 0 0 1rem; font-size: 2rem; }
+.contact-box { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; padding: 1.25rem; border: 1px solid var(--line); border-radius: 0.8rem; background: var(--surface); }
+.contact-box p { margin: 0; color: var(--muted); }
+.api-error { width: 100%; margin: 4rem 0; color: var(--coral-dark); font-weight: 700; text-align: center; }
+
+@media (max-width: 600px) {
+    .general-info { grid-template-columns: 1fr; gap: 0.7rem; padding: 1rem; }
+    .general-info img { grid-row: auto; max-height: 24rem; }
+    .contact-box { grid-template-columns: 1fr; }
+}
