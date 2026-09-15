@@ -7,6 +7,11 @@ const distanceSelect = document.querySelector('#distance');
 const zipInput = document.querySelector('#zip');
 const API_ENDPOINT = '../api/rescue-groups';
 
+const requestedSpecies = new URLSearchParams(window.location.search).get('species');
+if ([...speciesSelect.options].some((option) => option.value === requestedSpecies)) {
+    speciesSelect.value = requestedSpecies;
+}
+
 function setMessage(message, isError = false) {
     foundMessage.textContent = message;
     foundMessage.classList.toggle('error', isError);
