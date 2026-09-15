@@ -59,12 +59,15 @@ function hasContactInfo(animal) {
         attributes.contactAddress,
         attributes.contactCity,
         attributes.contactState,
-        attributes.url
-    ].some((value) => typeof value === 'string' ? value.trim() : Boolean(value));
+    ].some((value) => {
+        if (typeof value === 'string') return value.trim().length > 0;
+        if (Array.isArray(value)) return value.length > 0;
+        return value !== null && value !== undefined;
+    });
 }
 
 function renderAnimals(payload) {
-    const animals = getAnimals(payload).filter((animal) => getAnimalImage(animal) || hasContactInfo(animal));
+    const animals = getAnimals(payload).filter(hasContactInfo);
     resultsContainer.innerHTML = '';
 
     animals.forEach((animal) => {
@@ -154,7 +157,7 @@ searchButton.addEventListener('click', async () => {
     try {
         const payload = await searchAnimals(values);
         const count = renderAnimals(payload);
-        setMessage(count ? `${count} adoptable pets with contact information or a photo found near ${values.zip}.` : 'No adoptable pets with contact information or a photo matched those filters.');
+        setMessage(count ? `${count} adoptable pets with contact information found near ${values.zip}.` : 'No adoptable pets with contact information matched those filters.');
     } catch (error) {
         resultsContainer.style.display = 'none';
         setMessage(error.message, true);
