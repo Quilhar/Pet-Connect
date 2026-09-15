@@ -48,7 +48,7 @@ function getAnimalAttributes(animal) {
 
 function getAnimalImage(animal) {
     const attributes = getAnimalAttributes(animal);
-    return attributes.pictureThumbnailUrl || attributes.pictureUrl || '';
+    return attributes.pictureUrl || attributes.pictureThumbnailUrl || '';
 }
 
 function renderAnimals(payload) {
@@ -69,6 +69,7 @@ function renderAnimals(payload) {
         else image.hidden = true;
         image.alt = `${name} available for adoption`;
         image.loading = 'lazy';
+        image.decoding = 'async';
         link.appendChild(image);
         card.appendChild(link);
         [

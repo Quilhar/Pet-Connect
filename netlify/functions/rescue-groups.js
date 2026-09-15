@@ -24,7 +24,15 @@ exports.handler = async (event) => {
     const speciesViews = {
         Cat: 'cats',
         Dog: 'dogs',
-        Rabbit: 'rabbits'
+        Rabbit: 'rabbits',
+        Bird: 'birds',
+        Fish: 'fish',
+        Ferret: 'ferrets',
+        'Guinea Pig': 'guineapigs',
+        Hamster: 'hamsters',
+        Horse: 'horses',
+        Lizard: 'lizards',
+        Turtle: 'turtles'
     };
 
     if (!id) {
