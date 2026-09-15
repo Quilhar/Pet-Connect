@@ -51,6 +51,13 @@ function getAnimalImage(animal) {
     return attributes.pictureUrl || attributes.pictureThumbnailUrl || '';
 }
 
+function hasContactValue(value) {
+    if (typeof value === 'string') return value.trim().length > 0;
+    if (Array.isArray(value)) return value.some(hasContactValue);
+    if (value && typeof value === 'object') return Object.values(value).some(hasContactValue);
+    return value !== null && value !== undefined;
+}
+
 function hasContactInfo(animal) {
     const attributes = getAnimalAttributes(animal);
     return [
@@ -59,11 +66,7 @@ function hasContactInfo(animal) {
         attributes.contactAddress,
         attributes.contactCity,
         attributes.contactState,
-    ].some((value) => {
-        if (typeof value === 'string') return value.trim().length > 0;
-        if (Array.isArray(value)) return value.length > 0;
-        return value !== null && value !== undefined;
-    });
+    ].some(hasContactValue);
 }
 
 function renderAnimals(payload) {
