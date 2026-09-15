@@ -98,10 +98,10 @@ exports.handler = async (event) => {
         include: 'orgs,locations,pictures',
         'fields[animals]': fields
     });
-    const filterRadius = query.zip ? {
+    const filterRadius = query.zip && query.distance !== 'no-limit' ? {
         postalcode: query.zip,
-        miles: query.distance && query.distance !== 'no-limit' ? query.distance : 500
-    } : undefined;
+        miles: query.distance
+    } : query.zip ? { postalcode: query.zip } : undefined;
     const requestUrl = id ? `${DETAIL_URL}/${encodeURIComponent(id)}?include=orgs,locations,pictures` : `${API_URL}?${searchParams}`;
     const requestBody = id ? undefined : JSON.stringify({
         data: {

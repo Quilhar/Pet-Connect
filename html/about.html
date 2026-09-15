@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
 </head>
 <body>
     <header class="site-header">
@@ -24,13 +20,11 @@
         </div>
 
 
-        <button class="hamburger-button" type="button" aria-label="Open menu" aria-expanded="false"><i class="bars fa-solid fa-bars"></i></button>
+        <button class="hamburger-button" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false"><i class="bars fa-solid fa-bars" aria-hidden="true"></i></button>
         
         
         <ul class="links">
             
-            <li class="items"><a href="./portfolio.html">Portfolio</a></li>
-
             <li class="items">
                 <form action="./search.html" method="get">
                     <button type="submit">Adopt a Pet</button>
@@ -42,13 +36,9 @@
 
     </header>
 
-    <div class="hamburger-con">
+    <div class="hamburger-con" id="mobile-menu">
 
-        <div class="exit"><button><i class="fa-solid fa-x"></i></button></div>
-
-        <div class="hamburger-option">
-            <a href="./portfolio.html">Portfolio</a>
-        </div>
+        <div class="exit"><button type="button" aria-label="Close menu"><i class="fa-solid fa-x" aria-hidden="true"></i></button></div>
 
         <div class="hamburger-option">
             <a href="./search.html"><button><p>Adopt a Pet</p></button></a>
@@ -87,11 +77,11 @@
 
         <div class="contact-info">
 
-            <div class="copyright"><p>©2024 PetConnect</p></div>
+            <div class="copyright"><p>©2026 PetConnect</p></div>
 
-            <div class="number"><p>Phone Number - (207)-653-6200</p></div>
+            <div class="number"><p>Phone Number - <a href="tel:+12076536200">(207) 653-6200</a></p></div>
 
-            <div class="email"><p>Email - davidtit240@gmail.com</p></div>
+            <div class="email"><p>Email - <a href="mailto:davidtit240@gmail.com">davidtit240@gmail.com</a></p></div>
 
         </div>
 

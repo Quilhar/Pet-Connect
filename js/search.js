@@ -72,7 +72,7 @@ function hasContactInfo(animal) {
 
 function isWithinSearchDistance(animal, values) {
     const distance = Number(getAnimalAttributes(animal).distance);
-    const maximumDistance = values.distance === 'no-limit' ? 500 : Number(values.distance);
+    const maximumDistance = values.distance === 'no-limit' ? Number.POSITIVE_INFINITY : Number(values.distance);
     return Number.isFinite(distance) && distance <= maximumDistance;
 }
 
@@ -159,7 +159,8 @@ async function searchAnimals(values) {
     return response.json();
 }
 
-searchButton.addEventListener('click', async () => {
+document.querySelector('.search-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
     const values = getSearchValues();
     const validationMessage = validateSearch(values);
 

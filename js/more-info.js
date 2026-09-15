@@ -14,9 +14,21 @@ function getAnimalAttributes(payload) {
     return animal?.attributes || animal || {};
 }
 
-function setContactLine(label, value) {
+function setContactLine(label, value, href) {
     const paragraph = document.createElement('p');
-    paragraph.textContent = `${label}: ${value || 'Not listed'}`;
+    paragraph.append(`${label}: `);
+    if (value && href) {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = value;
+        if (href.startsWith('http')) {
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+        }
+        paragraph.appendChild(link);
+    } else {
+        paragraph.append(value || 'Not listed');
+    }
     contactBox.appendChild(paragraph);
 }
 
@@ -50,9 +62,9 @@ loadAnimal()
         petPhoto.alt = `${name} available for adoption`;
         description.textContent = animal.description || 'This organization has not provided a description for this pet.';
         contactBox.replaceChildren();
-        setContactLine('Phone', animal.contactPhone);
-        setContactLine('Email', animal.contactEmail);
-        setContactLine('Website', animal.url);
+        setContactLine('Phone', animal.contactPhone, animal.contactPhone ? `tel:${animal.contactPhone.replace(/[^+\d]/g, '')}` : '');
+        setContactLine('Email', animal.contactEmail, animal.contactEmail ? `mailto:${animal.contactEmail}` : '');
+        setContactLine('Website', animal.url, animal.url);
         setContactLine('Address', animal.contactAddress);
         setContactLine('City and State', [animal.contactCity, animal.contactState].filter(Boolean).join(', '));
     })
