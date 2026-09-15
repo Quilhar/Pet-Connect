@@ -24,28 +24,28 @@ exitBtn.addEventListener('click', () => {
 
 // Location
 
-const lonLatKey = '65e3ae9323d14c73bd9b88373bcdd36c'
-let lonLatUrl = `https://api.geoapify.com/v1/ipinfo?&apiKey=${lonLatKey}`
+const lonLatKey = '65e3ae9323d14c73bd9b88373bcdd36c';
+const lonLatUrl = `https://api.geoapify.com/v1/ipinfo?&apiKey=${lonLatKey}`;
 
 async function getLocation() {
     try {
         const locationResponse = await fetch(lonLatUrl)
         const locationData = await locationResponse.json()
         
-        lat = locationData.location.latitude
-        lon = locationData.location.longitude
-        curCity = locationData.city.name
-        curState = locationData.state.name
+        const lat = locationData.location.latitude;
+        const lon = locationData.location.longitude;
+        const curCity = locationData.city.name;
+        const curState = locationData.state.name;
 
-        console.log(lat,lon)
+        console.log(lat, lon);
 
-        const coords = [lat, lon]
+        const coords = [lat, lon];
 
-        return coords
+        return coords;
 
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 

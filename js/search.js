@@ -6,6 +6,7 @@ const sexSelect = document.querySelector('#sex');
 const distanceSelect = document.querySelector('#distance');
 const zipInput = document.querySelector('#zip');
 const API_ENDPOINT = '../api/rescue-groups';
+let activeSearchController;
 
 const requestedSpecies = new URLSearchParams(window.location.search).get('species');
 if ([...speciesSelect.options].some((option) => option.value === requestedSpecies)) {
@@ -69,8 +70,14 @@ function hasContactInfo(animal) {
     ].some(hasContactValue);
 }
 
-function renderAnimals(payload) {
-    const animals = getAnimals(payload).filter(hasContactInfo);
+function isWithinSearchDistance(animal, values) {
+    const distance = Number(getAnimalAttributes(animal).distance);
+    const maximumDistance = values.distance === 'no-limit' ? 500 : Number(values.distance);
+    return Number.isFinite(distance) && distance <= maximumDistance;
+}
+
+function renderAnimals(payload, values) {
+    const animals = getAnimals(payload).filter((animal) => hasContactInfo(animal) && isWithinSearchDistance(animal, values));
     resultsContainer.innerHTML = '';
 
     animals.forEach((animal) => {
@@ -123,10 +130,18 @@ async function searchAnimals(values) {
         throw new Error('The API proxy is unavailable from a file. Run netlify dev or deploy this site to Netlify.');
     }
 
+    activeSearchController?.abort();
+    const searchController = new AbortController();
+    activeSearchController = searchController;
+
     let response;
     try {
-        response = await fetch(`${API_ENDPOINT}?${params}`);
+        response = await fetch(`${API_ENDPOINT}?${params}`, {
+            cache: 'no-store',
+            signal: searchController.signal
+        });
     } catch {
+        if (searchController.signal.aborted) throw new DOMException('Search was replaced by a newer search.', 'AbortError');
         throw new Error('The API proxy could not be reached. Run netlify dev or deploy this site to Netlify.');
     }
 
@@ -159,9 +174,10 @@ searchButton.addEventListener('click', async () => {
 
     try {
         const payload = await searchAnimals(values);
-        const count = renderAnimals(payload);
+        const count = renderAnimals(payload, values);
         setMessage(count ? `${count} adoptable pets with contact information found near ${values.zip}.` : 'No adoptable pets with contact information matched those filters.');
     } catch (error) {
+        if (error.name === 'AbortError') return;
         resultsContainer.style.display = 'none';
         setMessage(error.message, true);
     } finally {
