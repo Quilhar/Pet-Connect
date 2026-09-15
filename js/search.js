@@ -51,8 +51,20 @@ function getAnimalImage(animal) {
     return attributes.pictureUrl || attributes.pictureThumbnailUrl || '';
 }
 
+function hasContactInfo(animal) {
+    const attributes = getAnimalAttributes(animal);
+    return [
+        attributes.contactEmail,
+        attributes.contactPhone,
+        attributes.contactAddress,
+        attributes.contactCity,
+        attributes.contactState,
+        attributes.url
+    ].some((value) => typeof value === 'string' ? value.trim() : Boolean(value));
+}
+
 function renderAnimals(payload) {
-    const animals = getAnimals(payload);
+    const animals = getAnimals(payload).filter((animal) => getAnimalImage(animal) || hasContactInfo(animal));
     resultsContainer.innerHTML = '';
 
     animals.forEach((animal) => {
@@ -65,12 +77,18 @@ function renderAnimals(payload) {
         card.className = 'result-card';
         link.href = `./more-info.html?id=${encodeURIComponent(id)}`;
         const imageUrl = getAnimalImage(animal);
-        if (imageUrl) image.src = imageUrl;
-        else image.hidden = true;
-        image.alt = `${name} available for adoption`;
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        link.appendChild(image);
+        if (imageUrl) {
+            image.src = imageUrl;
+            image.alt = `${name} available for adoption`;
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            link.appendChild(image);
+        } else {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'result-card-placeholder';
+            placeholder.textContent = 'No photo available';
+            link.appendChild(placeholder);
+        }
         card.appendChild(link);
         [
             name,
@@ -136,8 +154,7 @@ searchButton.addEventListener('click', async () => {
     try {
         const payload = await searchAnimals(values);
         const count = renderAnimals(payload);
-        const total = payload.meta?.count ?? count;
-        setMessage(count ? `${total} adoptable pets found near ${values.zip}. Showing the first ${count}.` : 'No adoptable pets matched those filters.');
+        setMessage(count ? `${count} adoptable pets with contact information or a photo found near ${values.zip}.` : 'No adoptable pets with contact information or a photo matched those filters.');
     } catch (error) {
         resultsContainer.style.display = 'none';
         setMessage(error.message, true);

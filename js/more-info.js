@@ -7,6 +7,7 @@ const petSex = document.querySelector('.sex1-2');
 const petAge = document.querySelector('.age1-2');
 const description = document.querySelector('.pet-background p');
 const contactBox = document.querySelector('.contact-box');
+const photoPlaceholder = document.querySelector('#pet-photo-placeholder');
 
 function getAnimalAttributes(payload) {
     const animal = Array.isArray(payload.data) ? payload.data[0] : payload.data;
@@ -40,8 +41,12 @@ loadAnimal()
         petSex.textContent = animal.sex || 'Sex not listed';
         petAge.textContent = animal.ageString || 'Age not listed';
         const imageUrl = animal.pictureUrl || animal.pictureThumbnailUrl;
-        if (imageUrl) petPhoto.src = imageUrl;
-        else petPhoto.hidden = true;
+        if (imageUrl) {
+            petPhoto.src = imageUrl;
+        } else {
+            petPhoto.hidden = true;
+            photoPlaceholder.hidden = false;
+        }
         petPhoto.alt = `${name} available for adoption`;
         description.textContent = animal.description || 'This organization has not provided a description for this pet.';
         contactBox.replaceChildren();

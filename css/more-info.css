@@ -17,6 +17,19 @@ main h1 { width: 100%; margin: 0 0 2rem; font-size: clamp(2.5rem, 6vw, 4.5rem); 
     box-shadow: var(--shadow);
 }
 .general-info img { grid-row: span 3; width: 100%; max-height: 28rem; border-radius: 0.7rem; object-fit: cover; }
+.general-info #pet-photo-placeholder {
+    display: grid;
+    grid-row: span 3;
+    place-items: center;
+    width: 100%;
+    min-height: 18rem;
+    padding: 1rem;
+    border-radius: 0.7rem;
+    background: var(--line);
+    color: var(--muted);
+    font-weight: 700;
+    text-align: center;
+}
 .general-info p { margin: 0; color: var(--muted); font-size: 1.05rem; }
 .general-info .name1-2 { color: var(--ink); font-family: 'Fraunces', serif; font-size: 2.25rem; font-weight: 700; }
 
@@ -30,6 +43,6 @@ main h1 { width: 100%; margin: 0 0 2rem; font-size: clamp(2.5rem, 6vw, 4.5rem); 
 
 @media (max-width: 600px) {
     .general-info { grid-template-columns: 1fr; gap: 0.7rem; padding: 1rem; }
-    .general-info img { grid-row: auto; max-height: 24rem; }
+    .general-info img, .general-info #pet-photo-placeholder { grid-row: auto; max-height: 24rem; }
     .contact-box { grid-template-columns: 1fr; }
 }
