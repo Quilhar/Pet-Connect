@@ -29,9 +29,19 @@ exports.handler = async (event) => {
 
     if (!id) {
         if (query.species && speciesViews[query.species]) {
-            filters.push(['species.plural', 'equals', speciesViews[query.species]]);
+            filters.push({
+                fieldName: 'species.plural',
+                operation: 'equal',
+                criteria: speciesViews[query.species]
+            });
         }
-        if (query.sex && query.sex !== 'no-pref') filters.push(['sex', 'equals', query.sex]);
+        if (query.sex && query.sex !== 'no-pref') {
+            filters.push({
+                fieldName: 'animals.sex',
+                operation: 'equal',
+                criteria: query.sex
+            });
+        }
     }
 
     const fields = [
